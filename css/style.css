@@ -213,10 +213,24 @@ section.card ul li::before {
   left: 0;
 }
 
+.progress-text {
+  font-size: var(--font-size-sm);
+  color: var(--text-tertiary);
+  font-weight: 600;
+  text-transform: uppercase;
+  margin-bottom: var(--space-2);
+  letter-spacing: 0.05em;
+}
+
 .quiz-controls {
   display: flex;
   gap: var(--space-3);
   margin-top: var(--space-6);
+}
+
+/* Quiz Options */
+#qText:focus {
+  outline: none;
 }
 
 .options {

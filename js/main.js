@@ -38,14 +38,45 @@ document.addEventListener('DOMContentLoaded', () => {
   const scoreText = document.getElementById('scoreText');
   const reviewList = document.getElementById('reviewList');
   const retryBtn = document.getElementById('retry');
+  const progressText = document.getElementById('progressText');
 
   // State
   let currentIndex = 0;
-  const answers = new Array(QUIZ_DATA.length).fill(null);
+  let answers = new Array(QUIZ_DATA.length).fill(null);
+
+  // Persistence
+  function loadProgress() {
+    try {
+      const saved = localStorage.getItem('quiz_answers');
+      if (saved) {
+        const parsed = JSON.parse(saved);
+        if (Array.isArray(parsed) && parsed.length === QUIZ_DATA.length) {
+          answers = parsed;
+        }
+      }
+    } catch (e) {
+      console.error('Load failed', e);
+    }
+  }
+
+  function saveProgress() {
+    try {
+      localStorage.setItem('quiz_answers', JSON.stringify(answers));
+    } catch (e) {
+      console.error('Save failed', e);
+    }
+  }
+
+  loadProgress();
 
   function renderQuestion(index) {
     if (!qText) return;
     const item = QUIZ_DATA[index];
+
+    // Update Progress
+    if (progressText) {
+      progressText.textContent = `Question ${index + 1} of ${QUIZ_DATA.length}`;
+    }
 
     // Animation reset
     qText.classList.remove('animate-enter');
@@ -56,6 +87,9 @@ document.addEventListener('DOMContentLoaded', () => {
     optionsWrap.classList.add('animate-enter');
 
     qText.textContent = `Q${index + 1}. ${item.q}`;
+    // Focus management for accessibility
+    qText.focus();
+
     optionsWrap.innerHTML = '';
 
     item.options.forEach((opt, i) => {
@@ -65,7 +99,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       const radio = document.createElement('input');
       radio.type = 'radio';
-      radio.name = 'quiz_option'; 
+      radio.name = 'quiz_option';
       radio.value = i;
       radio.checked = answers[index] === i;
 
@@ -93,6 +127,7 @@ document.addEventListener('DOMContentLoaded', () => {
     optionsWrap.addEventListener('change', (e) => {
       if (e.target.matches('input[type="radio"]')) {
         answers[currentIndex] = parseInt(e.target.value, 10);
+        saveProgress();
         checkCompletion();
       }
     });
@@ -141,6 +176,7 @@ document.addEventListener('DOMContentLoaded', () => {
   retryBtn && retryBtn.addEventListener('click', () => {
     currentIndex = 0;
     for (let i = 0; i < answers.length; i++) answers[i] = null;
+    saveProgress();
     checkCompletion();
     renderQuestion(currentIndex);
     resultArea.hidden = true;
