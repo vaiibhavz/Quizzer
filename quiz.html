@@ -32,9 +32,13 @@
       <p class="lead">Answer the questions. Use Next to move forward. You can review and submit at the end.</p>
 
       <div id="quizWrap">
+        <!-- added progress above questionArea -->
+        <div id="progress" class="progress" aria-live="polite" style="font-weight:700; margin-top:8px; color:#0b1220;">
+          Question 1 / 5
+        </div>
+
         <!-- Question area -->
         <div id="questionArea" class="question-area" role="region" aria-live="polite">
-          <div id="progressText" class="progress-text"></div>
           <h2 id="qText" tabindex="-1"></h2>
           <div id="options" class="options" role="list"></div>
         </div>
