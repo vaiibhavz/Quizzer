@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>API Demo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css" />
+  <script defer src="js/main.js"></script>
+</head>
+
+<body>
+  <header class="site-header">
+    <div class="container header-row">
+      <a class="brand" href="index.html">Qu!zzer</a>
+      <nav class="nav">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="quiz.html">Interactive Quiz</a></li>
+          <li><a href="api.html" aria-current="page">API Demo</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="card" aria-labelledby="api-title">
+      <h1 id="api-title">Fetch a Random Joke</h1>
+      <p class="lead">This demo uses a public joke API. Click the button to fetch a joke; it handles loading and errors.
+      </p>
+
+      <div class="api-demo">
+        <button id="fetchJokeBtn" class="btn primary">Get a Joke</button>
+        <div id="jokeArea" class="joke-area" aria-live="polite" style="margin-top:12px;"></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">© 2025 WebDev Task 3 — API Demo</div>
+  </footer>
+</body>
+
+</html>

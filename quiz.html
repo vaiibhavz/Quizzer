@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Interactive Quiz</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css" />
+  <script defer src="js/main.js"></script>
+</head>
+
+<body>
+  <header class="site-header">
+    <div class="container header-row">
+      <a class="brand" href="index.html">Qu!zzer</a>
+      <nav class="nav">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="quiz.html" aria-current="page">Interactive Quiz</a></li>
+          <li><a href="api.html">API Demo</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="card quiz-card" aria-labelledby="quiz-title">
+      <h1 id="quiz-title">Quick JavaScript Quiz</h1>
+      <p class="lead">Answer the questions. Use Next to move forward. You can review and submit at the end.</p>
+
+      <div id="quizWrap">
+        <!-- Question area -->
+        <div id="questionArea" class="question-area" role="region" aria-live="polite">
+          <h2 id="qText"></h2>
+          <div id="options" class="options" role="list"></div>
+        </div>
+
+        <!-- Controls -->
+        <div class="quiz-controls">
+          <button id="submitQuiz" class="btn primary">Submit</button>
+          <div style="flex:1"></div> <!-- Spacer -->
+          <button id="prevQ" class="btn" aria-label="Previous question">Previous</button>
+          <button id="nextQ" class="btn" aria-label="Next question">Next</button>
+        </div>
+
+        <!-- Result / review -->
+        <div id="resultArea" class="result-area" hidden>
+          <h2>Your Score</h2>
+          <p id="scoreText"></p>
+          <div id="reviewList" class="review-list"></div>
+          <div class="home-links" style="margin-top:12px;">
+            <button id="retry" class="btn">Retry Quiz</button>
+            <a class="btn" href="index.html">Back Home</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">© 2025 WebDev Task 3 — Quiz</div>
+  </footer>
+</body>
+
+</html>
